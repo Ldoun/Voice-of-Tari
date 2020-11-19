@@ -50,24 +50,24 @@ public class mic_input : MonoBehaviour
                 levelMax = wavePeak;
             }
         }
-        Debug.Log(levelMax*1000);
         float level = Mathf.Sqrt(Mathf.Sqrt(levelMax));
-        if (level > sensitivity && !flapped)
+        Debug.Log(level);
+        if (level > sensitivity)
         {
             Flap();
             flapped = true;
 
         }
-        if (level < sensitivity && flapped)
+        /*if (level < sensitivity && flapped)
         {
             flapped = false;
-        }
+        }*/
             
 
     }
     void Flap()
     {
         Debug.Log("flapped");
-        transform.Translate(Vector3.up * speed );
+        transform.Translate(Vector3.up * speed );   
     }
 }

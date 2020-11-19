@@ -443,9 +443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d74a8a27637124c85bba1726304628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 1
+  sensitivity: 0.3
   flapped: 0
-  speed: 10
+  speed: 0.3
 --- !u!65 &1350432451
 BoxCollider:
   m_ObjectHideFlags: 0
