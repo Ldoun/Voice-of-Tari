@@ -65,6 +65,7 @@ public class voice_rec_move : MonoBehaviour
         {
             Down();
         }
+        
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
         if (pos.y < 0f)
             pos.y = 0f;
@@ -79,8 +80,13 @@ public class voice_rec_move : MonoBehaviour
     void Flap()
     {
         Debug.Log("flapped");
-        transform.Translate(Vector3.up * speed);
-        
+        if (transform.position.x < -148.5)
+        {
+            rb.velocity = new Vector2(1.0f * (speed/10), 1.0f * speed);
+        }
+        rb.velocity = new Vector2(0.0f, 1.0f*speed);
+        //transform.Translate(Vector3.up * speed);
+
         //using AddForce
         //rb.AddForce(transform.up * speed);
 
@@ -89,7 +95,12 @@ public class voice_rec_move : MonoBehaviour
 
     }
     private void Down() {
-        transform.Translate(Vector3.down * speed);
+        if (transform.position.x < -148.5)
+        {
+            rb.velocity = new Vector2(1.0f * (speed / 10), 1.0f * speed);
+        }
+        rb.velocity = new Vector2(0.0f, -1.0f*speed);
+        //transform.Translate(Vector3.down * speed);
         //gravity controll
         //Physics2D.gravity = new Vector2(0, -3000f);
     }

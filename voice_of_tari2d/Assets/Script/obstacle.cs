@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class obstacle : MonoBehaviour
 {
-    public float speed = 0.758f;
+    public float speed = 0.54f;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +19,10 @@ public class obstacle : MonoBehaviour
         if (transform.position.x < -340)
         {
             Destroy(gameObject);
+        }
+        if (gameObject.tag == "item1")
+        {
+
         }
     }
 }
