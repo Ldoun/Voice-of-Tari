@@ -6,6 +6,7 @@ public class Boom : MonoBehaviour
 {
     public Splatter splatter;
     public float gravity_speed = 5f;
+    public float spike_gravity_speed = 100000f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,6 @@ public class Boom : MonoBehaviour
         }
         if (other.gameObject.tag == "item1")
         {
-            
             Rigidbody2D other_rb =other.gameObject.GetComponent<Rigidbody2D>();
             Vector3 offset=transform.position-other.gameObject.transform.position;
             offset.z = 0;
@@ -36,7 +36,21 @@ public class Boom : MonoBehaviour
             {
                 Debug.Log("item1");
                 //Create the gravity- make it realistic through division by the "magsqr" variable
-                other_rb.AddForce((gravity_speed*100 * offset.normalized / magsqr) * other_rb.mass);
+                other_rb.AddForce((gravity_speed * offset.normalized / magsqr) * other_rb.mass);
+                //other_rb.AddForce(transform.up * 20);
+            }
+        }
+        if (other.gameObject.tag == "obstacle_2")
+        {
+            Rigidbody2D other_rb = other.gameObject.GetComponent<Rigidbody2D>();
+            Vector3 offset = transform.position - other.gameObject.transform.position;
+            offset.z = 0;
+            float magsqr = offset.sqrMagnitude;
+            if (magsqr > 0.0001f)
+            {
+                Debug.Log("obstacle_2");
+                //Create the gravity- make it realistic through division by the "magsqr" variable
+                other_rb.AddForce((spike_gravity_speed * offset.normalized / magsqr) * other_rb.mass);
                 //other_rb.AddForce(transform.up * 20);
             }
         }
