@@ -9,11 +9,16 @@ public class Boom : MonoBehaviour
     public float gravity_speed = 5f;
     public float spike_gravity_speed = 100000f;
     private Rigidbody2D rb;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         //m_GravityDirection = GravityDirection.Down;
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.mute = false;
+        audioSource.loop = false;
+        audioSource.playOnAwake = false;
     }
 
     // Update is called once per frame
@@ -24,6 +29,8 @@ public class Boom : MonoBehaviour
     {
         if (other.gameObject.tag == "obstacle")
         {
+            Debug.Log("Play Sound");
+            audioSource.Play();
             Debug.Log("Boom");
             Instantiate(splatter, transform.position, Quaternion.identity);
             Destroy(gameObject);
