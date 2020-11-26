@@ -7,6 +7,9 @@ TagManager:
   - obstacle
   - item1
   - obstacle_2
+  - item_big
+  - obstacle_1
+  - item_small
   layers:
   - Default
   - TransparentFX

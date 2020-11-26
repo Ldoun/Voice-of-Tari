@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Boom : MonoBehaviour
@@ -7,16 +8,17 @@ public class Boom : MonoBehaviour
     public Splatter splatter;
     public float gravity_speed = 5f;
     public float spike_gravity_speed = 100000f;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        //m_GravityDirection = GravityDirection.Down;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -36,7 +38,7 @@ public class Boom : MonoBehaviour
             {
                 Debug.Log("item1");
                 //Create the gravity- make it realistic through division by the "magsqr" variable
-                other_rb.AddForce((gravity_speed * offset.normalized / magsqr) * other_rb.mass);
+                other_rb.AddForce((gravity_speed * offset.normalized / magsqr) * other_rb.mass *5);
                 //other_rb.AddForce(transform.up * 20);
             }
         }
@@ -54,6 +56,12 @@ public class Boom : MonoBehaviour
                 //other_rb.AddForce(transform.up * 20);
             }
         }
+        if (other.gameObject.tag == "item_big") {
+            rb.velocity /= 2;
+            Destroy(other.transform.parent.gameObject);
+            Destroy(other.gameObject);
+            transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+            Debug.Log("go BIg!");
+        }
     }
-
 }

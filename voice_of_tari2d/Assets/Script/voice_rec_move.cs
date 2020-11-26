@@ -38,6 +38,10 @@ public class voice_rec_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.x < -174)
+        {
+            rb.velocity = new Vector2(1.0f * (speed / 5), 0);
+        }
         //get mic volume
         int dec = 128;
         float[] waveData = new float[dec];
