@@ -31,9 +31,9 @@ public class Boom : MonoBehaviour
         {
             Debug.Log("Play Sound");
             audioSource.Play();
-            Debug.Log("Boom");
-            Instantiate(splatter, transform.position, Quaternion.identity);
+            Debug.Log("Boom!!!!");
             Destroy(gameObject);
+            Instantiate(splatter, transform.position, Quaternion.identity);
         }
         if (other.gameObject.tag == "item1")
         {
