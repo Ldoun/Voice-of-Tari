@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class voice_rec_move : MonoBehaviour
 {
     AudioClip microphoneInput;
@@ -11,12 +11,16 @@ public class voice_rec_move : MonoBehaviour
     public bool flapped;
     public float speed;
     private Rigidbody2D rb;
+    public Text gameboard;
+    public Image Background;
     // Start is called before the first frame update
     /*enum GravityDirection { Down, Left, Up, Right };
     GravityDirection m_GravityDirection;*/
 
     private void Awake()
     {
+        gameboard.text = "";
+        Background.enabled = false;
         //init microphone input
         if (Microphone.devices.Length > 0)
         {
@@ -38,9 +42,13 @@ public class voice_rec_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < -174)
+        if (transform.position.x < -240)
         {
             rb.velocity = new Vector2(1.0f * (speed / 5), 0);
+            Debug.Log("Boom!!!!");
+            Background.enabled = true;
+            gameboard.text = "GAME OVER";
+            Destroy(gameObject);
         }
         //get mic volume
         int dec = 128;

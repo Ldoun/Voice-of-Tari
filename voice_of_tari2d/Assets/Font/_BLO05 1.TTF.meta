@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 94c9be2b3d86da542936b1eda5e9fb55
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Yj BLOCK Medium
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 04ac9c73121f03e4e88e2753fb3d8faf, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

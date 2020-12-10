@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boom : MonoBehaviour
 {
@@ -10,7 +11,15 @@ public class Boom : MonoBehaviour
     public float spike_gravity_speed = 100000f;
     private Rigidbody2D rb;
     private AudioSource audioSource;
+    public Text gameboard;
+    public Image Background;
+
     // Start is called before the first frame update
+    private void Awake()
+    {
+        gameboard.text = "";
+        Background.enabled = false;
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,6 +28,8 @@ public class Boom : MonoBehaviour
         audioSource.mute = false;
         audioSource.loop = false;
         audioSource.playOnAwake = false;
+        gameboard.text = "";
+        Background.enabled = false;
     }
 
     // Update is called once per frame
@@ -32,6 +43,8 @@ public class Boom : MonoBehaviour
             Debug.Log("Play Sound");
             audioSource.Play();
             Debug.Log("Boom!!!!");
+            Background.enabled = true;
+            gameboard.text = "GAME OVER";
             Destroy(gameObject);
             Instantiate(splatter, transform.position, Quaternion.identity);
         }
@@ -69,6 +82,15 @@ public class Boom : MonoBehaviour
             Destroy(other.gameObject);
             transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             Debug.Log("go BIg!");
+        }
+
+        if (other.gameObject.tag == "item_small")
+        {
+            //rb.velocity /= 2;
+            Destroy(other.transform.parent.gameObject);
+            Destroy(other.gameObject);
+            transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+            Debug.Log("go small!");
         }
     }
 }
